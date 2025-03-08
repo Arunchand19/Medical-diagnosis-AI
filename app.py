@@ -56,7 +56,6 @@ div[data-testid="stSelectbox"] label {
 """
 st.markdown(input_label_css, unsafe_allow_html=True)
 
-
 # Custom CSS to change button text color to white
 button_style = """
 <style>
@@ -87,11 +86,12 @@ selected = st.selectbox(
      'Hypo-Thyroid Prediction']
 )
 
-def display_input(label, tooltip, key, type="text"):
-    if type == "text":
+def display_input(label, tooltip, key, input_type="text"):
+    if input_type == "text":
         return st.text_input(label, key=key, help=tooltip)
-    elif type == "number":
-        return st.number_input(label, key=key, help=tooltip, step=1)
+    elif input_type == "number":
+        # Use a float step of 0.1 and format to two decimals
+        return st.number_input(label, key=key, help=tooltip, step=0.1, format="%.2f")
 
 # Diabetes Prediction Page
 if selected == 'Diabetes Prediction':
